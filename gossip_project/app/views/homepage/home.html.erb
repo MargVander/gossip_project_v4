@@ -1,7 +1,15 @@
-<h1>Bienvenue sur The Gossip Project</h1>
+<h1 class="font-weight-light" align="center">Bienvenue sur The Gossip Project</h1>
+<p></p>
 
 <% @gossip.each do |gossip| %>
-
-      <p><a class="text-dark" href="/gossips/<%= gossip.id %>"><span class="font-weight-bold"><%= gossip.title %></span></a>, <%= gossip.user.first_name %></p>
+<div class="card" align="center">
+<div class="card-body col-sm-10">
+  <blockquote class="blockquote mb-0 text-left">
+    <p><a class="text-dark" href="<%=gossip_path(gossip.id)%>"><span class="font-weight-bold"><%= gossip.title %></span></a></p>
+    <footer class="blockquote-footer"><%= gossip.user.first_name %></footer>
+  </blockquote>
+</div>
+</div>
+<p></p>
 
   <% end %>

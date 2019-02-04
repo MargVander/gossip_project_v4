@@ -1,0 +1,15 @@
+<% u = @user.find(params[:user_id]) %>
+<h1 class="font-weight-light" align="center"><%= u.first_name %> <%= u.last_name %></h1>
+<p></p>
+
+
+
+
+<div class="card" align="center">
+<div class="card-body col-sm-10">
+  <blockquote class="blockquote mb-0 text-left">
+    <p class="font-weight-bold">From <%= u.city.name %></p>
+    <p>"<%= u.description %>"</p>
+  </blockquote>
+</div>
+</div>

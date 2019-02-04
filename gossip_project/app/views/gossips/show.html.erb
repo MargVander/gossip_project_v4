@@ -1,5 +1,14 @@
-<h1>Gossip</h1>
+<h1 class="font-weight-light" align="center">Gossip</h1>
+<p></p>
 <% g = @gossip.find(params[:gossip_id]) %>
 
-<p><%= g.title %></p>
-<p><%= g.content %></p>
+<div class="card" align="center">
+<div class="card-body col-sm-10">
+  <blockquote class="blockquote mb-0 text-left">
+    <p class="font-weight-bold"><%= g.title %></p>
+    <p><%= g.content %></p>
+    <footer class="blockquote-footer"><a class="text-dark" href="<%=user_path(g.user.id)%>"><%= g.user.first_name %> <%= g.user.last_name %></a></footer>
+  </blockquote>
+</div>
+</div>
+<p class="font-weight-light"><small>Created at : <%= g.created_at %></small></p>

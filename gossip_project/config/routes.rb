@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'gossips/:gossip_id', to: 'gossips#show'
+  get 'users/:user_id', to: 'users#show', as: 'user'
+  get 'gossips/:gossip_id', to: 'gossips#show', as: 'gossip'
   root 'homepage#home'
   get 'welcome/:user_entry', to: 'welcome#show'
   get 'contact', to: 'contact#home'
