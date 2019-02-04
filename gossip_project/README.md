@@ -1,24 +1,26 @@
-# README
+# THE_GOSSIP_PROJECT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting Started
 
-Things you may want to cover:
+Git clone le projet.
+Placez-vous à la racine, faites `cd the_gossip_project`, puis dans le terminal :
 
-* Ruby version
+`bundle install`
+`rails db:migrate`  => si il y a des migrations down.
+`rails db:seed`  => vous charge une base de donnée aléatoire.
 
-* System dependencies
+`rails server` => rejoingnez http://localhost:3000 pour découvrir le site.
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## Built With
 
-* Services (job queues, cache servers, search engines, etc.)
+* [Ruby on rails](https://rubyonrails.org/) - The web framework used
 
-* Deployment instructions
 
-* ...
+
+## Authors
+
+* **Margaux Vanderbeken**
+* **Alexandre Dunhez**
