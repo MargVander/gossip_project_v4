@@ -1,5 +1,5 @@
 class ContactController < ApplicationController
-  def home
+  def show
     puts "on est tjr là"
   end
 end

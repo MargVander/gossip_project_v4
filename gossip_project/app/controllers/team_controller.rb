@@ -1,5 +1,5 @@
 class TeamController < ApplicationController
-  def home
+  def show
     puts 'on est là'
   end
 end
