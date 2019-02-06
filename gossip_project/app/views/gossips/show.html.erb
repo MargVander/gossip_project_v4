@@ -1,15 +1,39 @@
-<h1 class="font-weight-light" align="center">Gossip</h1>
-<p></p>
-<% g = @gossip.find(params[:id]) %>
+<% if flash[:notice] %>
+  <div class="alert alert-dismissible alert-success">
+    <div class="notice"><strong><%= flash[:notice] %></strong>
+     Thanks !</div>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
 
+<h1 class="font-weight-light" align="center">Gossip</h1><br>
+<% g = @gossip %>
 
+<a class="font-weight-light text-muted" href="<%=edit_gossip_path(g.id)%>">Edit</a> <a class="font-weight-light text-danger" href="<%=gossip_path(g.id)%> " data-confirm= 'Are you sure ?' data-method="DELETE">Delete</a>
 <div class="card" align="center">
 <div class="card-body col-sm-10">
   <blockquote class="blockquote mb-0 text-left">
     <p class="font-weight-bold"><%= g.title %></p>
     <p><%= g.content %></p>
-    <footer class="blockquote-footer"><a class="text-dark" href="<%=user_path(g.user.id)%>"><%= g.user.first_name %> <%= g.user.last_name %></a></footer>
+    <footer class="blockquote-footer"><a class="text-muted" href="<%=user_path(g.user.id)%>"><%= g.user.first_name %> <%= g.user.last_name %></a>, <a class="text-muted" href="<%=city_path(g.user.city.id)%>"><%= g.user.city.name %></a></footer>
   </blockquote>
 </div>
 </div>
-<p class="font-weight-light"><small>Created at : <%= g.created_at %></small></p>
+<p class="font-weight-light text-muted"><small>Created at : <%= g.created_at %></small></p>
+<a class="h4 font-weight-light text-dark" href="<%=new_gossip_comment_path(g.id)%>">Comment</a><br><br>
+
+
+
+<% @comment.each do |comment| %>
+
+<div class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <h6 class="mb-1 text-dark"><%= comment.content %></h6>
+    </div>
+    <a class="text-muted" href="<%=user_path(comment.user.id)%>"><%= comment.user.first_name %></a><br>
+    <a class="font-weight-light text-muted small" href="<%=edit_gossip_comment_path(g.id, comment.id)%>">Edit</a> <a class="font-weight-light text-danger small" href="<%=gossip_comment_path(comment.gossip.id, comment.id)%> " data-confirm= 'Are you sure ?' data-method="DELETE">Delete</a>
+</div>
+  <% end %>
+  <br>
+  <br>
+  <br>

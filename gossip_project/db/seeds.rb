@@ -9,6 +9,8 @@ end
 	user.city = City.all.sample
 	user.save
 end
+c = City.create(name: "Unknow", zip_code: "00000")
+user = User.create(city: c, first_name: "Anonymous", last_name: "Unknow", description: "Not specified", email: "anonymous@anon.com", age: 0)
 
 20.times do
 	gossip = Gossip.new(title: Faker::Music.band, content: Faker::StrangerThings.quote)
@@ -38,4 +40,11 @@ end
   joinupm.private_message = PrivateMessage.all.sample
   joinupm.recipient = User.all.sample
   joinupm.save
+end
+
+50.times do
+	comment = Comment.new(content: Faker::RuPaul.quote)
+	comment.user = User.all.sample
+	comment.gossip = Gossip.all.sample
+	comment.save
 end

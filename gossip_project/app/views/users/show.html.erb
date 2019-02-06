@@ -1,6 +1,5 @@
 <% u = @user.find(params[:user_id]) %>
-<h1 class="font-weight-light" align="center"><%= u.first_name %> <%= u.last_name %></h1>
-<p></p>
+<h1 class="font-weight-light" align="center"><%= u.first_name %> <%= u.last_name %></h1><br>
 
 
 
@@ -8,8 +7,9 @@
 <div class="card" align="center">
 <div class="card-body col-sm-10">
   <blockquote class="blockquote mb-0 text-left">
-    <p class="font-weight-bold">From <%= u.city.name %>, <%= u.city.zip_code %></p>
-    <p><%= u.age %> years old</p>
+    <a class="font-weight-bold text-dark" href="<%=city_path(u.city.id)%>"><%= u.city.name %></a>
+    <p class="text-muted"><%= u.email %><br>
+    <%= u.age %> years old</p>
     <p class="font-italic font-weight-light">"<%= u.description %>"</p>
   </blockquote>
 </div>

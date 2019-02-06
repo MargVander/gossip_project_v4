@@ -1,6 +1,7 @@
 class GossipsController < ApplicationController
   def show
-    @gossip = Gossip.all
+    @gossip = Gossip.find(params[:id])
+    @comment = @gossip.comments
   end
 
   def new
@@ -8,15 +9,36 @@ class GossipsController < ApplicationController
   end
 
   def create
-  @g = Gossip.new(title: params["title"], content: params["content"])
-    c = City.create(name: "Unknow", zip_code: "00000")
-    @g.user = User.create(city: c, first_name: "Anonymous", last_name: "Unknow", description: "Not specified", email: "anonymous@anon.com", age: 0)
+    @g = Gossip.new(user_id: 11, title: params["title"], content: params["content"])
     if @g.save
-      redirect_to root_path, alert: "Thank you, snake !"
+      flash[:notice] = "Post successfully created"
+      redirect_to root_path
     elsif @g.errors.any?
+      flash[:notice] = "Post fail"
       redirect_to new_gossip_path
     end
-
-
   end
+
+  def edit
+    @gossip = Gossip.find(params[:id])
+  end
+
+  def update
+    @gossip = Gossip.find(params[:id])
+    gossipparams = params.require(:gossip).permit(:title, :content)
+    if @gossip.update(gossipparams)
+      flash[:notice] = "Post successfully edited"
+      redirect_to root_path
+    elsif @gossip.errors.any?
+      flash[:notice] = "Edit fail"
+      redirect_to edit_gossip_path(params[:id])
+    end
+  end
+
+  def destroy
+    @gossip = Gossip.find(params[:id])
+    @gossip.destroy
+    redirect_to root_path
+  end
+
 end

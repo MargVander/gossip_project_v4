@@ -1,0 +1,30 @@
+<% if flash[:notice] %>
+  <div class="alert alert-dismissible alert-danger">
+    <div class="notice"><strong><%= flash[:notice] %></strong></div>
+    <div>Please try again</div>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
+
+<h1 class="font-weight-light" align="center">Editer l'article</h1><br>
+
+<div class="container col-md-8 order-md-1">
+  <%= form_for @gossip do |f| %>
+
+
+     <div class="form-group">
+           <label>Title</label>
+           <%= f.text_field :title, class: "form-control "  %>
+     </div>
+
+     <div class="form">
+           <label>Content</label>
+           <%= f.text_area :content, class: "form-control" %>
+     </div><br>
+
+     <div class="form-group">
+           <%= submit_tag "Edit gossip", class: 'btn btn-secondary btn-lg btn-submit' %>
+     </div>
+
+     <% end %>
+     </div>

@@ -1,0 +1,20 @@
+<% c = @city %>
+<h1 class="font-weight-light" align="center"><%= c.name %>, <%= c.zip_code %></h1><br>
+
+
+<% @user.each do |user| %>
+<%user.gossips.each do |gossip|%>
+
+<a href="<%=gossip_path(gossip.id)%>" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 text-dark font-weight-bold"><%= gossip.title %></h5>
+    </div>
+    <p class="mb-1 text-muted"><%= gossip.user.first_name %></p>
+  </a>
+
+  <% end %>
+  <% end %>
+</div>
+<br>
+<br>
+<br>

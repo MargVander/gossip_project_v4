@@ -6,27 +6,20 @@
   </div>
 <% end %>
 
-<h1 class="font-weight-light" align="center">Nouveau gossip</h1><br>
 
-
-
+<h1 class="font-weight-light" align="center">Ajouter un commentaire</h1>
 
 <div class="container col-md-8 order-md-1">
   <%= form_tag url_for(action: 'create'), method: "post" do %>
 
 
      <div class="form-group">
-           <%= label_tag 'Title' %>
-           <%= text_field_tag 'title', @title, class: "form-control "  %>
+           <%= label_tag 'Content' %>
+           <%= text_field_tag 'content', @content, class: "form-control "  %>
      </div>
 
-     <div class="form">
-           <%= label_tag 'Content' %>
-           <%= text_area_tag 'content', @content, class: "form-control" %>
-     </div><br>
-
      <div class="form-group">
-           <%= submit_tag "Create gossip", class: 'btn btn-secondary btn-lg btn-submit' %>
+           <%= submit_tag "Add comment", class: 'btn btn-secondary btn-lg btn-submit' %>
      </div>
 
      <% end %>

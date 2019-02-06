@@ -1,15 +1,27 @@
-<h1 class="font-weight-light" align="center">Bienvenue sur The Gossip Project</h1>
-<p></p>
+<% if flash[:notice] %>
+  <div class="alert alert-dismissible alert-success">
+    <div class="notice"><strong><%= flash[:notice] %></strong>
+     Thanks !</div>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
 
-<% @gossip.each do |gossip| %>
-<div class="card" align="center">
-<div class="card-body col-sm-10">
-  <blockquote class="blockquote mb-0 text-left">
-    <p><a class="text-dark" href="<%=gossip_path(gossip.id)%>"><span class="font-weight-bold"><%= gossip.title %></span></a></p>
-    <footer class="blockquote-footer"><%= gossip.user.first_name %></footer>
-  </blockquote>
-</div>
-</div>
-<p></p>
+<h1 class="font-weight-light" align="center">Bienvenue sur The Gossip Project</h1><br>
+
+<div class="list-group">
+
+<% @gossip.reverse.each do |gossip| %>
+
+<a href="<%=gossip_path(gossip.id)%>" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 text-dark font-weight-bold"><%= gossip.title %></h5>
+    </div>
+    <p class="mb-1 text-muted"><%= gossip.user.first_name %></p>
+    <p class="mb-1 text-muted font-weight-light small"><%= gossip.comments.count %> comment(s)</p>
+  </a>
 
   <% end %>
+</div>
+<br>
+<br>
+<br>
