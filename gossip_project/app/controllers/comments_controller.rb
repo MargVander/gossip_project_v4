@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
   include SessionsHelper
   before_action :authenticate_user, only: [:new, :edit]
+  before_action :user_match, only: [:edit, :destroy]
+
 
   def new
     @comment = Comment.new
   end
 
   def create
-    puts params
     @comment = Comment.new(gossip_id: params["gossip_id"], content: params["content"])
     @comment.user = current_user
     if @comment.save
@@ -48,6 +49,14 @@ class CommentsController < ApplicationController
     unless current_user
       flash[:danger] = "Please log in."
       redirect_to new_session_path
+    end
+  end
+
+  def user_match
+    @comment = Comment.find(params["id"])
+    unless current_user.id == @comment.user.id
+      flash[:danger] = "You are not allowed."
+      redirect_to root_path
     end
   end
 

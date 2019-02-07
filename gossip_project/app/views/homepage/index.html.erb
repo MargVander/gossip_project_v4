@@ -14,6 +14,8 @@
   </div>
 <% end %>
 
+<% if current_user %>
+
 <h1 class="font-weight-light" align="center">Here's the tea !</h1><br>
 
 <div class="list-group">
@@ -25,7 +27,14 @@
       <h5 class="mb-1 text-dark font-weight-bold"><%= gossip.title %></h5>
     </div>
     <p class="mb-1 text-muted"><%= gossip.user.first_name %></p>
-    <p class="mb-1 text-muted font-weight-light small"><%= gossip.comments.count %> comment(s)</p>
+    <p class="mb-1 text-muted font-weight-light small"><%= gossip.likes.count %> like(s), <%= gossip.comments.count %> comment(s)</p>
+
+    <% pre_like = gossip.likes.find { |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+      <a class="font-weight-light text-danger small" href="<%=gossip_like_path(gossip.id, pre_like)%> " data-method="DELETE">Unlike</a>
+    <% else %>
+      <a class="font-weight-light text-success small" href="<%=gossip_likes_path(gossip.id)%> " data-method="POST">Like</a>
+    <% end %>
   </a>
 
   <% end %>
@@ -33,3 +42,26 @@
 <br>
 <br>
 <br>
+
+<% else %>
+
+<h1 class="font-weight-light" align="center">Here's the tea !</h1><br>
+
+<div class="list-group">
+
+<% @gossip.reverse.each do |gossip| %>
+
+<a href="<%=gossip_path(gossip.id)%>" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 text-dark font-weight-bold"><%= gossip.title %></h5>
+    </div>
+    <p class="mb-1 text-muted"><%= gossip.user.first_name %></p>
+    <p class="mb-1 text-muted font-weight-light small"><%= gossip.likes.count %> like(s), <%= gossip.comments.count %> comment(s)</p>
+  </a>
+
+  <% end %>
+</div>
+<br>
+<br>
+<br>
+<% end %>

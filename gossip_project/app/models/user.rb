@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	belongs_to :city, optional: true
+	has_many :likes
 	has_many :gossips
 	has_many :comments
 	has_many :sent_messages, foreign_key: 'sender_id', class_name: 'PrivateMessage'
@@ -9,6 +10,6 @@ class User < ApplicationRecord
 		validates :last_name,
     presence: true
 	has_secure_password
-	# has_many :likes
+
 
 end

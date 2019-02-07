@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'team', to: 'team#show'
   resources :gossips do
     resources :comments
+    resources :likes
   end
   resources :sessions
+
 end
