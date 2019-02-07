@@ -1,0 +1,41 @@
+<h1 class="font-weight-light" align="center">New snake in town ?</h1><br>
+
+
+<div class="container col-md-8 order-md-1">
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+
+     <div class="form-group">
+           <%= label_tag 'First Name' %>
+           <%= text_field_tag 'first_name', @first_name, class: "form-control "  %>
+     </div>
+
+     <div class="form-group">
+           <%= label_tag 'Last Name' %>
+           <%= text_field_tag 'last_name', @last_name, class: "form-control "  %>
+     </div>
+
+     <div class="form-group">
+           <%= label_tag 'Email' %>
+           <%= text_field_tag 'email', @email, class: "form-control "  %>
+     </div>
+
+     <div class="form-group">
+           <%= label_tag 'Password ' %>
+           <%= text_field_tag 'password', @password, class: "form-control ",  type:"password"%>
+     </div>
+
+     <div class="form">
+           <%= label_tag 'Description' %>
+           <%= text_area_tag 'description', @description, class: "form-control" %>
+     </div><br>
+
+     <div class="form-group">
+           <%= submit_tag "Done", class: 'btn btn-secondary btn-lg btn-submit' %>
+     </div>
+
+     <% end %>
+     </div>
+     <br>
+     <br>
+     <br>

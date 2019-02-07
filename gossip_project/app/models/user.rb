@@ -8,7 +8,7 @@ class User < ApplicationRecord
     presence: true
 		validates :last_name,
     presence: true
-	# has_many :comments
+	has_secure_password
 	# has_many :likes
 
 end

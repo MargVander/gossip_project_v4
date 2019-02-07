@@ -6,10 +6,12 @@
   </div>
 <% end %>
 
+<% if current_user %>
 <h1 class="font-weight-light" align="center">Gossip</h1><br>
 <% g = @gossip %>
-
+<% if current_user.id == @gossip.user.id %>
 <a class="font-weight-light text-muted" href="<%=edit_gossip_path(g.id)%>">Edit</a> <a class="font-weight-light text-danger" href="<%=gossip_path(g.id)%> " data-confirm= 'Are you sure ?' data-method="DELETE">Delete</a>
+<% end %>
 <div class="card" align="center">
 <div class="card-body col-sm-10">
   <blockquote class="blockquote mb-0 text-left">
@@ -31,9 +33,43 @@
       <h6 class="mb-1 text-dark"><%= comment.content %></h6>
     </div>
     <a class="text-muted" href="<%=user_path(comment.user.id)%>"><%= comment.user.first_name %></a><br>
+    <% if current_user.id == comment.user.id %>
     <a class="font-weight-light text-muted small" href="<%=edit_gossip_comment_path(g.id, comment.id)%>">Edit</a> <a class="font-weight-light text-danger small" href="<%=gossip_comment_path(comment.gossip.id, comment.id)%> " data-confirm= 'Are you sure ?' data-method="DELETE">Delete</a>
+<% end %>
 </div>
   <% end %>
   <br>
   <br>
   <br>
+
+  <% else %>
+
+  <h1 class="font-weight-light" align="center">Gossip</h1><br>
+  <% g = @gossip %>
+  <div class="card" align="center">
+  <div class="card-body col-sm-10">
+    <blockquote class="blockquote mb-0 text-left">
+      <p class="font-weight-bold"><%= g.title %></p>
+      <p><%= g.content %></p>
+      <footer class="blockquote-footer"><a class="text-muted" href="<%=user_path(g.user.id)%>"><%= g.user.first_name %> <%= g.user.last_name %></a>, <a class="text-muted" href="<%=city_path(g.user.city.id)%>"><%= g.user.city.name %></a></footer>
+    </blockquote>
+  </div>
+  </div>
+  <p class="font-weight-light text-muted"><small>Created at : <%= g.created_at %></small></p>
+
+
+  <% @comment.each do |comment| %>
+
+  <div class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <h6 class="mb-1 text-dark"><%= comment.content %></h6>
+      </div>
+      <a class="text-muted" href="<%=user_path(comment.user.id)%>"><%= comment.user.first_name %></a><br>
+
+  </div>
+    <% end %>
+    <br>
+    <br>
+    <br>
+
+  <% end %>
