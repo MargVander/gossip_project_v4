@@ -23,11 +23,13 @@
            <%= label_tag 'Password ' %>
            <%= text_field_tag 'password', @password, class: "form-control ",  type:"password"%>
      </div>
-
+<p><input id="remember_me" name="remember_me" type="checkbox" value="1" /> Remember me</p>
 
      <div class="form-group">
            <%= submit_tag "Done", class: 'btn btn-secondary btn-lg btn-submit' %>
      </div>
+
+
 
      <% end %>
      </div>
